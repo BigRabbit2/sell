@@ -15,7 +15,7 @@ public class Test {
             ticketingResult = sellService.getTicketingResult(user.getUserId(), trip.getTripId());
             if (ticketingResult == null) {
                 try {
-                    SellServiceImpl.TASK_MONITOR.wait();
+                    SellServiceImpl.TASK_MONITOR_MAP.get(trip.getTripId()).wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
